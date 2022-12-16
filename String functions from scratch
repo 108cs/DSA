@@ -1,0 +1,78 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int slen(char *s){
+  int count=0;
+     while((*s)!='\0'){
+        count++;
+        s++;
+     }
+     return count;
+}
+void concatt(char* s1,char* s2){
+ 
+    while((*s1)!='\0'){
+        s1++;
+     }
+      while((*s2)!='\0'){
+        *s1=*s2;
+        s2++;
+        s1++;
+     }
+     *s1='\0';
+
+}
+void reverse(char *s1){
+   int n=slen(s1);
+   int j=n-1;
+   int i=0;
+   char temp;
+   while(i<n/2){
+        temp=*(s1+i);
+        *(s1+i)=*(s1+j);
+        *(s1+j)=temp;
+        j--;
+        i++;
+   }
+}
+void naive(char *s1,char *p){
+  int n1=slen(s1);
+  int n2=slen(p);
+  int count=0;
+  int flag=0;
+   for(int i=0;i<n1;i++){
+    int k=i;
+    for(int j=0;j<n2;j++){
+      if(*(p+j)==*(s1+k))
+      count++;
+      k++;
+    }
+    if(count==n2){
+      cout<<"Pattern Found !";
+      flag=1;
+      break;
+    }
+   }
+   if(flag==0)
+   cout<<"Pattern not found !";
+}
+
+int main() {
+  char s1[]="Namaste";
+  // char s2[]="NAMASHKAR";
+  // int len=slen(s1);
+  char p[]="amas";
+  char s2[]="12345678913";
+  char p2[]="45";
+  
+  // cout<<len<<endl;
+  //   concatt(s1,s2);
+  // cout<<s1<<endl;
+  // reverse(s1);
+  // cout<<s1<<endl;
+  // cout<<slen(s1)<<endl;
+  naive(s1,p);
+  return 0;
+}
